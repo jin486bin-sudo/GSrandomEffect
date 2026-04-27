@@ -1,0 +1,14 @@
+build/
+build_win/
+build_win_cross/
+*.o
+*.d
+*.a
+*.so
+*.dylib
+*.DS_Store
+배포/macOS/GSrandom effect.component/
+배포/macOS/GSrandom effect.vst3/
+배포/Windows/build_win/
+배포/Windows/JUCE/
+mingw-toolchain.cmake
