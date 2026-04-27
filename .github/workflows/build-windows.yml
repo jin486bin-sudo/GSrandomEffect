@@ -16,27 +16,19 @@ jobs:
       run: git clone --depth 1 --branch 8.0.4 https://github.com/juce-framework/JUCE.git
 
     - name: Configure
-      run: cmake -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_BUILD_TYPE=Release -f CMakeLists_win.txt
-      shell: cmd
-
-    - name: Configure (fallback)
-      if: failure()
       run: cmake -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_BUILD_TYPE=Release
-      shell: cmd
 
     - name: Build
-      run: cmake --build build --config Release
-      shell: cmd
+      run: cmake --build build --config Release --target GSrandomEffect_VST3
 
     - name: Collect artifact
       run: |
         mkdir output
         xcopy /e /i /y "build\GSrandomEffect_artefacts\Release\VST3\GSrandom effect.vst3" "output\GSrandom effect.vst3\"
-      shell: cmd
 
     - name: Upload VST3
       uses: actions/upload-artifact@v4
       with:
         name: GSrandom-effect-Windows-VST3
         path: output/
-        retention-days: 30
+        retention-days: 90
